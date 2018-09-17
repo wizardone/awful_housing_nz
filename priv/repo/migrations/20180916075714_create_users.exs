@@ -9,7 +9,6 @@ defmodule AwfulHousingNz.Repo.Migrations.CreateUsers do
       timestamps()
     end
 
-    unique_index(:users, :email, unique: true)
-
+    create index(:users, :email, unique: true)
   end
 end

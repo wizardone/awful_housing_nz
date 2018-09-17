@@ -9,3 +9,5 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+alias AwfulHousingNz.User
+AwfulHousingNz.Repo.insert!(%User{email: "user1@example.com", first_name: "Test", last_name: "Test"})
