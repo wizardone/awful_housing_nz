@@ -23,6 +23,7 @@ defmodule AwfulHousingNzWeb do
       import Plug.Conn
       import AwfulHousingNzWeb.Router.Helpers
       import AwfulHousingNzWeb.Gettext
+      alias AwfulHousingNz.User, as: User
     end
   end
 

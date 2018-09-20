@@ -1,1 +1,2 @@
 <div>A potential list of users</div>
+<%=link('New User', to: user_path(@conn, :new), class: "nav-link")%>

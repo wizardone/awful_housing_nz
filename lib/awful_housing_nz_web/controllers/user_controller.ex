@@ -7,7 +7,14 @@ defmodule AwfulHousingNzWeb.UserController do
   end
 
   def new(conn, _params) do
-    conn |> render("new.html")
+    changeset = User.changeset(%User{}, %{})
+    conn
+    |> render("new.html", changeset: changeset)
+  end
+
+  def create(conn, %{"user" => user_params}) do
+    changeset = User.changeset(%User{}, user_params)
+    conn
+    |> render("new.html", changeset: changeset)
   end
 end
-
