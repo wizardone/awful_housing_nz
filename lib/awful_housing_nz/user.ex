@@ -14,5 +14,6 @@ defmodule AwfulHousingNz.User do
     user
     |> cast(attrs, [:email, :first_name, :last_name])
     |> validate_required([:email, :first_name, :last_name])
+    |> validate_format(:email, ~r/@/)
   end
 end

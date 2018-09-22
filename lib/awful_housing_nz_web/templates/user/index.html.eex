@@ -1,2 +1,9 @@
 <div>A potential list of users</div>
+<%= for user <- @users do %>
+  <div>
+    <%= user.first_name %>
+    <%= user.last_name %>
+    <%= user.email %>
+  </div>
+<% end %>
 <%=link('New User', to: user_path(@conn, :new), class: "nav-link")%>
