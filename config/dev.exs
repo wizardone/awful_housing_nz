@@ -52,7 +52,7 @@ config :phoenix, :stacktrace_depth, 20
 config :awful_housing_nz, AwfulHousingNz.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
+  password: "",
   database: "awful_housing_nz_dev",
   hostname: "localhost",
   pool_size: 10
