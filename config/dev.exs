@@ -54,5 +54,5 @@ config :awful_housing_nz, AwfulHousingNz.Repo,
   username: "postgres",
   password: "",
   database: "awful_housing_nz_dev",
-  hostname: "localhost",
+  hostname: "db",
   pool_size: 10
