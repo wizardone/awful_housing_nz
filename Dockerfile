@@ -12,8 +12,3 @@ RUN apt-get -y install inotify-tools
 
 RUN mix local.hex --force
 RUN mix deps.get
-
-#RUN cd assets/ && npm install
-#RUN node node_modules/brunch/bin/brunch build
-
-CMD ["mix", "phx.server"]
