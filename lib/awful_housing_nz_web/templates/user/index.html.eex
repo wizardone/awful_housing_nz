@@ -1,4 +1,4 @@
-<div>A potential list of users</div>
+<div>A list of users!</div>
 <%= for user <- @users do %>
   <div>
     <%= user.first_name %>
