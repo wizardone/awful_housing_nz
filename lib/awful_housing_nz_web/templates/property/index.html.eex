@@ -1,0 +1,2 @@
+<h3>A list of properties</h3>
+<%=link('New Property', to: property_path(@conn, :new), class: "nav-link")%>

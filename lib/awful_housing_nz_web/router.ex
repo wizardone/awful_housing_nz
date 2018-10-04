@@ -18,6 +18,8 @@ defmodule AwfulHousingNzWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController
+    resources "/properties", PropertyController
+    resources "/pictures", PictureController
   end
 
   # Other scopes may use custom stacks.
