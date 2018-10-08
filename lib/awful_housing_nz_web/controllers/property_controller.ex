@@ -5,10 +5,17 @@ defmodule AwfulHousingNzWeb.PropertyController do
   end
 
   def new(conn, _params) do
-    conn |> render("new.html")
+    changeset = Property.changeset(%Property{pictures: [%Picture{}, %Picture{}]}, %{})
+    conn |> render("new.html", changeset: changeset)
   end
 
-  def create(conn) do
-
+  def create(conn, %{"property" => property_params}) do
+    changeset = Property.changeset(%Property{}, property_params)
+    case changeset.valid? do
+      true -> conn |> redirect(to: property_path(conn, :index))
+      false -> conn
+        |> put_flash(:error, "Please check your form for errors")
+        |> render("new.html", changeset: changeset)
+    end
   end
 end

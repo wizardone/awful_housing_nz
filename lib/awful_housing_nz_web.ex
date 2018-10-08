@@ -24,6 +24,8 @@ defmodule AwfulHousingNzWeb do
       import AwfulHousingNzWeb.Router.Helpers
       import AwfulHousingNzWeb.Gettext
       alias AwfulHousingNz.User, as: User
+      alias AwfulHousingNz.Picture, as: Picture
+      alias AwfulHousingNz.Property, as: Property
     end
   end
 

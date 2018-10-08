@@ -1,0 +1,27 @@
+<%= form_for @changeset, property_path(@conn, :create), [multipart: true], fn f -> %>
+  <label>
+    <%= error_tag f, :city %>
+    City: <%= text_input f, :city %>
+  </label>
+  <br />
+  <label>
+    <%= error_tag f, :suburb %>
+    Suburb: <%= text_input f, :suburb %>
+  </label>
+  <br />
+  <label>
+    <%= error_tag f, :street %>
+    Street: <%= text_input f, :street %>
+  </label>
+  <br />
+  <%= inputs_for f, :pictures, fn p -> %>
+    <label>
+      <%= error_tag p, :picture %>
+      Picture: <%= file_input p, :picture %>
+    </label>
+    <br />
+  <% end %>
+  <br />
+  <%= submit "Submit" %>
+<% end %>
+
