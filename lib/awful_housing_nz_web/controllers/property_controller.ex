@@ -4,16 +4,24 @@ defmodule AwfulHousingNzWeb.PropertyController do
     conn |> render("index.html")
   end
 
-  def new(conn, _params) do
-    changeset = Property.changeset(%Property{pictures: [%Picture{}, %Picture{}]}, %{})
+  def new(conn, params) do
+    #IO.inspect(params)
+    changeset = Property.changeset(
+      %Property{pictures: [%Picture{}]}, %{}
+    )
+    #IO.inspect(changeset)
     conn |> render("new.html", changeset: changeset)
   end
 
   def create(conn, %{"property" => property_params}) do
     changeset = Property.changeset(%Property{}, property_params)
-    case changeset.valid? do
-      true -> conn |> redirect(to: property_path(conn, :index))
-      false -> conn
+    IO.inspect(changeset)
+
+    case AwfulHousingNz.Repo.insert(changeset) do
+      {:ok, _struct} ->
+        conn |> redirect(to: property_path(conn, :index))
+      {:error, changeset} ->
+        conn
         |> put_flash(:error, "Please check your form for errors")
         |> render("new.html", changeset: changeset)
     end

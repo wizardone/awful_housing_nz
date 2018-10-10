@@ -3,12 +3,13 @@ defmodule AwfulHousingNz.Picture do
   import Ecto.Changeset
 
   schema "pictures" do
-    field :name, :string
+    field :filename, :string
     belongs_to :property, Property
   end
 
   def changeset(picture, params \\ %{}) do
     picture
-    |> cast(params, [:name])
+    |> cast(params, [:filename])
+    |> validate_required([:filename])
   end
 end

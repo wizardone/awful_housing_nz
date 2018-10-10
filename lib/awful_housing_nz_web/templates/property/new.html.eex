@@ -14,9 +14,10 @@
     Street: <%= text_input f, :street %>
   </label>
   <br />
+  <%= error_tag f, :pictures %>
   <%= inputs_for f, :pictures, fn p -> %>
     <label>
-      <%= error_tag p, :picture %>
+      <%= error_tag p, :filename %>
       Picture: <%= file_input p, :picture %>
     </label>
     <br />
