@@ -1,2 +1,9 @@
 <h3>A list of properties</h3>
+<%= for property <- @properties do %>
+  <div>
+    City: <%= property.city %><br />
+    Suburb: <%= property.suburb %><br />
+    Street: <%= property.street %><br />
+  </div>
+<% end %>
 <%=link('New Property', to: property_path(@conn, :new), class: "nav-link")%>
