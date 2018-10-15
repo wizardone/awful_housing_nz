@@ -5,5 +5,11 @@
     Suburb: <%= property.suburb %><br />
     Street: <%= property.street %><br />
   </div>
+  <div>
+    Pictures:
+    <%= for picture <- property.pictures do %>
+      <%= picture.name %>
+    <% end %>
+  </div>
 <% end %>
 <%=link('New Property', to: property_path(@conn, :new), class: "nav-link")%>

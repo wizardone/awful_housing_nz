@@ -2,6 +2,7 @@ defmodule AwfulHousingNzWeb.PropertyController do
   use AwfulHousingNzWeb, :controller
   def index(conn, _params) do
     properties = AwfulHousingNz.Repo.all(Property)
+                 |> AwfulHousingNz.Repo.preload(:pictures)
     conn |> render("index.html", properties: properties)
   end
 
