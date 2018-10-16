@@ -5,6 +5,7 @@ defmodule AwfulHousingNz.Picture do
   schema "pictures" do
     field :picture, :any, virtual: true
     field :name, :string
+    field :type, :string
     belongs_to :property, Property
     timestamps()
   end
@@ -13,6 +14,7 @@ defmodule AwfulHousingNz.Picture do
     picture
     |> cast(params, [:picture])
     |> transform_picture
+    |> move_picture
   end
 
   defp transform_picture(changeset) do
@@ -22,6 +24,17 @@ defmodule AwfulHousingNz.Picture do
         |> put_change(:name, picture.filename)
         |> put_change(:type, picture.content_type)
         _-> changeset
+    end
+  end
+
+  defp move_picture(changeset) do
+    case changeset do
+      %Ecto.Changeset{valid?: true, changes: %{picture: picture}} ->
+        case File.copy(picture.path, "./pictures/#{picture.filename}") do
+          {:ok, result} -> changeset
+          {:error, reason} -> IO.inspect(reason)
+        end
+      _-> changeset
     end
   end
 end
