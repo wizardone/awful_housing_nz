@@ -6,6 +6,7 @@ defmodule AwfulHousingNz.Picture do
     field :picture, :any, virtual: true
     field :name, :string
     field :type, :string
+    field :picture, :binary
     belongs_to :property, Property
     timestamps()
   end
