@@ -1,12 +1,12 @@
 defmodule AwfulHousingNz.Picture do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
   schema "pictures" do
     field :picture, :any, virtual: true
     field :name, :string
     field :type, :string
-    field :picture, :binary
     belongs_to :property, Property
     timestamps()
   end
@@ -24,18 +24,28 @@ defmodule AwfulHousingNz.Picture do
         changeset
         |> put_change(:name, picture.filename)
         |> put_change(:type, picture.content_type)
-        _-> changeset
+      _-> changeset
     end
   end
 
   defp move_picture(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{picture: picture}} ->
-        case File.copy(picture.path, "./pictures/#{picture.filename}") do
+        property_id = last_property_id() + 1
+        # TODO: check the directory creation?
+        File.mkdir_p("./pictures/#{property_id}")
+        case File.copy(picture.path, "./pictures/#{property_id}/#{picture.filename}") do
           {:ok, result} -> changeset
           {:error, reason} -> IO.inspect(reason)
         end
       _-> changeset
+    end
+  end
+
+  defp last_property_id do
+    case AwfulHousingNz.Repo.one(from property in AwfulHousingNz.Property, order_by: [desc: property.id], limit: 1) do
+      %AwfulHousingNz.Property{id: id} -> id
+      nil -> 0
     end
   end
 end

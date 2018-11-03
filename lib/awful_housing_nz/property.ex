@@ -14,7 +14,7 @@ defmodule AwfulHousingNz.Property do
     property
     |> AwfulHousingNz.Repo.preload(:pictures)
     |> cast(params, [:city, :street, :suburb])
-    |> cast_assoc(:pictures, required: true)
     |> validate_required([:city, :suburb, :street])
+    |> cast_assoc(:pictures, required: true)
   end
 end
