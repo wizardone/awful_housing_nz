@@ -33,8 +33,8 @@ defmodule AwfulHousingNz.Picture do
       %Ecto.Changeset{valid?: true, changes: %{picture: picture}} ->
         property_id = last_property_id() + 1
         # TODO: check the directory creation?
-        File.mkdir_p("./pictures/#{property_id}")
-        case File.copy(picture.path, "./pictures/#{property_id}/#{picture.filename}") do
+        File.mkdir_p!("./priv/static/images/properties/#{property_id}")
+        case File.copy(picture.path, "./priv/static/images/properties/#{property_id}/#{picture.filename}") do
           {:ok, result} -> changeset
           {:error, reason} -> IO.inspect(reason)
         end

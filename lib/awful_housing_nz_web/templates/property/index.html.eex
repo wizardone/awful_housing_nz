@@ -8,7 +8,7 @@
   <div>
     Pictures:
     <%= for picture <- property.pictures do %>
-      <%= picture.name %>
+      <%= img_tag(static_path(@conn, "/images/properties/#{property.id}/#{picture.name}"))%>
     <% end %>
   </div>
 <% end %>
