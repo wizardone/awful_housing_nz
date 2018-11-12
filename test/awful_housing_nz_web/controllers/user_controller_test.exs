@@ -8,9 +8,11 @@ defmodule AwfulHousingNzWeb.UserControllerTest do
     end
 
     test "with users on the page", %{conn: conn} do
-      # TODO Insert users and check response
-       conn = get conn, "/users"
-       assert html_response(conn, 200) =~ "A list of users!"
+      insert(:user, %{first_name: "John", email: "john@example.com", last_name: "Tester"})
+
+      conn = get conn, "/users"
+      assert html_response(conn, 200) =~ "A list of users!"
+      assert html_response(conn, 200) =~ "john@example.com"
     end
   end
 end

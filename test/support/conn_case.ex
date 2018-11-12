@@ -20,6 +20,7 @@ defmodule AwfulHousingNzWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       import AwfulHousingNzWeb.Router.Helpers
+      import AwfulHousingNzWeb.Factory
 
       # The default endpoint for testing
       @endpoint AwfulHousingNzWeb.Endpoint
