@@ -15,11 +15,11 @@ defmodule AwfulHousingNzWeb.UserController do
 
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
-    case changeset.valid? do
-      true ->
-        AwfulHousingNz.Repo.insert(changeset)
+    IO.inspect(changeset)
+    case AwfulHousingNz.Repo.insert(changeset) do
+      {:ok, _some_info} ->
         conn |> redirect(to: user_path(conn, :index))
-      false ->
+      {:error, changeset} ->
         conn
         |> put_flash(:error, "Please check your form for errors")
         |> render("new.html", changeset: changeset)

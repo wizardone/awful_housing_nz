@@ -3,15 +3,25 @@
     <%= error_tag f, :first_name %>
     First Name: <%= text_input f, :first_name %>
   </label>
-
+  <br />
   <label>
     <%= error_tag f, :last_name %>
     Last Name: <%= text_input f, :last_name %>
   </label>
-
+  <br />
   <label>
     <%= error_tag f, :email %>
     Email: <%= text_input f, :email %>
+  </label>
+  <br />
+  <label>
+    <%= error_tag f, :password %>
+    Password: <%= password_input f, :password %>
+  </label>
+  <br />
+  <label>
+    <%= error_tag f, :password_confirmation %>
+    Confirm password: <%= password_input f, :password_confirmation %>
   </label>
 
   <%= submit "Submit" %>

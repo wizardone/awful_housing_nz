@@ -3,7 +3,13 @@ defmodule AwfulHousingNz.UserTest do
 
   alias AwfulHousingNz.User
 
-  @valid_attrs %{email: "pat@example.com", first_name: "Pat Example", last_name: "Some"}
+  @valid_attrs %{
+    email: "pat@example.com",
+    first_name: "Pat Example",
+    last_name: "Some",
+    password: "qwe",
+    password_confirmation: "qwe"
+  }
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

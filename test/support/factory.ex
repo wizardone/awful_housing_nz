@@ -9,7 +9,8 @@ defmodule AwfulHousingNzWeb.Factory do
     %AwfulHousingNz.User{
       first_name: "Test",
       last_name: "Test",
-      email: "qwe@qwe.com"
+      email: "qwe@qwe.com",
+      encrypted_password: Comeonin.Bcrypt.hashpwsalt("qweqwe")
     }
   end
 end
