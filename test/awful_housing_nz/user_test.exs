@@ -21,4 +21,16 @@ defmodule AwfulHousingNz.UserTest do
     changeset = User.changeset(%User{}, @invalid_attrs)
     refute changeset.valid?
   end
+
+  describe "password_correct?" do
+    test "password is correct" do
+      user = insert(:user, %{encrypted_password: Comeonin.Bcrypt.hashpwsalt("qweqwe")})
+      assert User.password_correct?(user, "qweqwe") == {:ok, true}
+    end
+
+    test "password is not correct" do
+      user = insert(:user, %{encrypted_password: Comeonin.Bcrypt.hashpwsalt("qweqwe")})
+      assert User.password_correct?(user, "random test") == {:error, false}
+    end
+  end
 end

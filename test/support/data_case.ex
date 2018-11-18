@@ -22,6 +22,7 @@ defmodule AwfulHousingNz.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import AwfulHousingNz.DataCase
+      import AwfulHousingNzWeb.Factory
     end
   end
 

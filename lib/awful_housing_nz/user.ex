@@ -30,4 +30,11 @@ defmodule AwfulHousingNz.User do
         changeset
     end
   end
+
+  def password_correct?(user, password) do
+    case Comeonin.Bcrypt.checkpw(password, user.encrypted_password) do
+      true -> {:ok, true}
+      false -> {:error, false}
+    end
+  end
 end
