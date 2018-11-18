@@ -31,8 +31,8 @@ defmodule AwfulHousingNz.User do
     end
   end
 
-  def password_correct?(user, password) do
-    case Comeonin.Bcrypt.checkpw(password, user.encrypted_password) do
+  def password_correct?(user = %AwfulHousingNz.User{encrypted_password: encrypted_password}, password) do
+    case Comeonin.Bcrypt.checkpw(password, encrypted_password) do
       true -> {:ok, true}
       false -> {:error, false}
     end
