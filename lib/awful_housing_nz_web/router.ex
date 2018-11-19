@@ -20,6 +20,7 @@ defmodule AwfulHousingNzWeb.Router do
     resources "/users", UserController
     resources "/properties", PropertyController
     resources "/pictures", PictureController
+    resources "/sessions", SessionController
   end
 
   # Other scopes may use custom stacks.

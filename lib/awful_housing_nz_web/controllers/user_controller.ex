@@ -15,7 +15,6 @@ defmodule AwfulHousingNzWeb.UserController do
 
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
-    IO.inspect(changeset)
     case AwfulHousingNz.Repo.insert(changeset) do
       {:ok, _some_info} ->
         conn |> redirect(to: user_path(conn, :index))
