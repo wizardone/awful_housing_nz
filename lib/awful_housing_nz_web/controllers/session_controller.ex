@@ -7,7 +7,10 @@ defmodule AwfulHousingNzWeb.SessionController do
   end
 
   def create(conn, %{"session" => session_params}) do
-    changeset = Session.changeset(session_params)
-    conn |> render("new.html", changeset: changeset)
+    changeset = %{Session.changeset(session_params) | action: :insert}
+    case changeset.valid? do
+      true -> conn |> put_flash(:info, "Logged in successfully") |> redirect(to: page_path(conn, :index))
+      false -> conn |> render("new.html", changeset: changeset)
+    end
   end
 end
