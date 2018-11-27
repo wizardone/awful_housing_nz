@@ -9,8 +9,12 @@ defmodule AwfulHousingNzWeb.SessionController do
   def create(conn, %{"session" => session_params}) do
     changeset = Session.changeset(session_params)
     case changeset.valid? do
-      # TODO: Maybe puth Session.authenticate here?
-      true -> conn |> put_flash(:info, "Logged in successfully") |> redirect(to: page_path(conn, :index))
+      true ->
+        case Session.authenticate(changeset.changes) do
+          {:error, message} -> conn |> put_flash(:error, message) |> redirect(to: page_path(conn, :index))
+            # render the form and append the errors in the changeset
+          {:ok, _message} -> conn |> put_flash(:info, "Logged in successfully") |> redirect(to: page_path(conn, :index))
+        end
       false -> conn |> render("new.html", changeset: changeset)
     end
   end

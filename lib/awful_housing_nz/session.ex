@@ -1,6 +1,7 @@
 defmodule AwfulHousingNz.Session do
   import Ecto.Changeset
   @attributes [:email, :password]
+  @error_message "email or password incorrect"
 
   defstruct @attributes
 
@@ -9,22 +10,16 @@ defmodule AwfulHousingNz.Session do
     {%AwfulHousingNz.Session{}, %{email: :string, password: :string}}
     |> Ecto.Changeset.cast(attrs, @attributes)
     |> Ecto.Changeset.validate_required(@attributes)
-    |> validate_password
   end
 
-  def authenticate(%AwfulHousingNz.Session{email: email, password: password}) do
-    
-  end
-
-  defp validate_password(changeset) do
-    case changeset.changes do
-      %{email: email, password: password} ->
-        user = AwfulHousingNz.Repo.get_by(AwfulHousingNz.User, email: email)
-        case user do
-          %AwfulHousingNz.User{encrypted_password: encrypted_password} -> AwfulHousingNz.User.password_correct?(user, password)
-          nil -> add_error(changeset, :email, "No user with this email")
+  def authenticate(%{email: email, password: password}) do
+    case user = AwfulHousingNz.Repo.get_by(AwfulHousingNz.User, email: email) do
+      %AwfulHousingNz.User{encrypted_password: encrypted_password} ->
+        case AwfulHousingNz.User.password_correct?(user, password) do
+          true -> {:ok, "authenticated"}
+          false -> {:error, @error_message}
         end
-      %{} -> changeset
+      nil -> {:error, @error_message}
     end
   end
 end
