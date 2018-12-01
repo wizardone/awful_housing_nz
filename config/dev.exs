@@ -51,8 +51,10 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :awful_housing_nz, AwfulHousingNz.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "",
-  database: "awful_housing_nz_dev",
-  hostname: "localhost",
-  pool_size: 10
+  # This gets overwritten by SYSTEM_URL in repo.ex
+  url: "ecto://postgres:postgres@db/awful_housing_nz_dev"
+  #username: "postgres",
+  #password: "postgres",
+  #database: "awful_housing_nz_dev",
+  #hostname: "localhost",
+  #pool_size: 10

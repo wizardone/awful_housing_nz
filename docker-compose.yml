@@ -12,6 +12,6 @@ services:
       - db
   db:
     container_name: db
-    image: postgres
+    image: postgres:10
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
