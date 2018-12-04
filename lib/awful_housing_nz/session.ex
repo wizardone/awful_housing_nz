@@ -16,7 +16,7 @@ defmodule AwfulHousingNz.Session do
     case user = AwfulHousingNz.Repo.get_by(AwfulHousingNz.User, email: email) do
       %AwfulHousingNz.User{encrypted_password: encrypted_password} ->
         case AwfulHousingNz.User.password_correct?(user, password) do
-          true -> {:ok, "authenticated"}
+          true -> {:ok, user}
           false -> {:error, @error_message}
         end
       nil -> {:error, @error_message}

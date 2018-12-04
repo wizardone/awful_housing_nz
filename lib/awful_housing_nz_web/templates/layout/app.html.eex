@@ -45,7 +45,12 @@
         <form class="form-inline my-2 my-lg-0">
           <!--<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-          <%=link('Login', to: session_path(@conn, :new), class: "btn-outline-success")%>
+          <%= if user_logged?(@conn) do %>
+            <p class="btn-outline-success">Hi, <%= current_user(@conn).email %></p><br />
+            <%= link('Logout', to: "/sessions/#{current_user(@conn).id}", method: :delete, class: "btn-outline-success")%>
+          <% else %>
+            <%= link('Login', to: session_path(@conn, :new), class: "btn-outline-success")%>
+          <% end %>
         </form>
       </div>
     </nav>

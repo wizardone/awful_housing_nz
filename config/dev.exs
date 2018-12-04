@@ -52,7 +52,7 @@ config :phoenix, :stacktrace_depth, 20
 config :awful_housing_nz, AwfulHousingNz.Repo,
   adapter: Ecto.Adapters.Postgres,
   # This gets overwritten by SYSTEM_URL in repo.ex
-  url: "ecto://postgres:postgres@db/awful_housing_nz_dev"
+  url: "ecto://postgres:postgres@localhost/awful_housing_nz_dev"
   #username: "postgres",
   #password: "postgres",
   #database: "awful_housing_nz_dev",
