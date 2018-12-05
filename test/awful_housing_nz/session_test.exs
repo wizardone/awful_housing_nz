@@ -21,11 +21,23 @@ defmodule AwfulHousingNz.SessionTest do
 
   describe "authenticate" do
     test "authenticates an user" do
+      user = insert(:user)
+      result = Session.authenticate(%{email: "qwe@qwe.com", password: "qweqwe"})
 
+      assert result == {:ok, user}
     end
 
-    test "does not authenticate an user" do
+    test "does not authenticate an user if he does not exist" do
+      result = Session.authenticate(%{email: "qwe@qwe.com", password: "qweqwe"})
 
+      assert result == {:error, "email or password incorrect"}
+    end
+
+    test "does not authenticate an user if his password is incorrect" do
+      insert(:user)
+      result = Session.authenticate(%{email: "qwe@qwe.com", password: "wat_is_this"})
+
+      assert result == {:error, "email or password incorrect"}
     end
   end
 end
