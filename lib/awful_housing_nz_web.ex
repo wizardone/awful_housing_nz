@@ -23,10 +23,7 @@ defmodule AwfulHousingNzWeb do
       import Plug.Conn
       import AwfulHousingNzWeb.Router.Helpers
       import AwfulHousingNzWeb.Gettext
-      alias AwfulHousingNz.User, as: User
-      alias AwfulHousingNz.Session, as: Session
-      alias AwfulHousingNz.Picture, as: Picture
-      alias AwfulHousingNz.Property, as: Property
+      alias AwfulHousingNz.{User, Session, Picture, Property}
     end
   end
 
